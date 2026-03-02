@@ -1,1 +1,1 @@
-web: gunicorn config.wsgi
+web: gunicorn rate_my_cream_tea.wsgi

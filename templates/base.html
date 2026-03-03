@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
 <meta name="Rate My Cream Tea" content="Rate and review your favorite cream tea places"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 <title>Rate My Cream Tea</title>
 </head>
 <body>
@@ -32,6 +33,11 @@
     </div>
     <footer class="text-center">
         <p>&copy; 2024 Rate My Cream Tea. All rights reserved.</p>
+        <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
     </footer>
 
 

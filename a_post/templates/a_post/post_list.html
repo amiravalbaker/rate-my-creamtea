@@ -1,4 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Post List</h1>
+    <div class="jumbotron text-center">
+        <h1>Post List</h1>
+        <h5 class="card-title">Welcome to Rate My Cream Tea!</h5>
+            <p class="card-text">Discover and review your favorite cream tea places. Share your experiences and find the best spots in town!</p>
+            <a href="#" class="btn btn-primary">Get Started</a>
+    </div>
+    <div class = "row">
+        <!-- Loop this section for each post -->
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm p-3" style="border: 1px solid #3e73a7;">
+                <div class="card-header">
+                    <h2 class="text-center">Featured Cream Tea Place</h2>
+                </div>
+                <div class="card-body">
+                    <img src="https://via.placeholder.com/800x400" class="card-img-top" alt="Cream Tea Place">
+                    <h5 class="card-title">Welcome to Rate My Cream Tea!</h5>
+                    <p class="card-text">Discover and review your favorite cream tea places. Share your experiences and find the best spots in town!</p>
+                    <a href="#" class="btn btn-primary">Rate this!</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

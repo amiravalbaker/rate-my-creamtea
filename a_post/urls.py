@@ -22,4 +22,6 @@ app_name = 'posts'
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('add/', views.post_add, name='post_add'),
+    path('post/<int:pk>/', views.post_detail, name='post_detail'),
 ]

@@ -1,0 +1,1 @@
+web: gunicorn rate_my_cream_tea.wsgi

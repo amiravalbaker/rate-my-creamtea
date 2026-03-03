@@ -1,5 +1,5 @@
 """
-URL configuration for rate_my_cream_tea project.
+URL configuration for post app.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -15,11 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
+from a_post import views
+
+app_name = 'posts'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    path('', include('a_post.urls')),
-    path('summernote/', include('django_summernote.urls')),
+    path('', views.home, name='home'),
 ]

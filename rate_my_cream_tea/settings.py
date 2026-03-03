@@ -143,8 +143,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),) if os.path.isdir(
+    os.path.join(BASE_DIR, 'static')) else ()
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Cloudinary Configuration
+if os.environ.get('CLOUDINARY_URL'):
+    import cloudinary
+    cloudinary.config(secure=True)
+
+STORAGE_URL = os.environ.get('CLOUDINARY_URL')
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'

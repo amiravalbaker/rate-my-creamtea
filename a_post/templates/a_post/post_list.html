@@ -28,7 +28,6 @@
                     <div class="card-body">
                         <p class="card-text"><strong>Location:</strong> {{ post.location }}</p>
                         <p class="card-text"><strong>Category:</strong> <span class="badge">{{ post.category }}</span></p>
-                        <p class="card-text">{{ post.description|truncatewords:20 }}</p>
                         <div class="post-meta">
                             <div class="rating">
                                 <span class="rating-stars">★ {{ post.rating }}/5</span>
@@ -37,7 +36,7 @@
                                 <strong>Price:</strong> £{{ post.price }}
                             </div>
                         </div>
-                        <a href=\"{% url 'posts:post_detail' post.id %}\" class=\"btn btn-primary\">View Details</a>
+                        <a href="{% url 'posts:post_detail' post.id %}" class="btn btn-primary">View Details</a>
                     </div>
                 </article>
             </div>

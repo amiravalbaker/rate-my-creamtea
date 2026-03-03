@@ -160,3 +160,7 @@ if os.environ.get('CLOUDINARY_URL'):
 STORAGE_URL = os.environ.get('CLOUDINARY_URL')
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'

@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'rate_my_cream_tea.urls'

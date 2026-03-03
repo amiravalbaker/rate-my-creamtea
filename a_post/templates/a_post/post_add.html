@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <article class="card">
+            <div class="card-header">
+                <h1 class="card-title text-light">Share a Cream Tea Venue</h1>
+                <p class="text-light">Help us build the best cream tea community. Share a venue you love!</p>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" action="{% url 'posts:post_add' %}">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                        <button type="submit" class="btn btn-primary">Submit Venue</button>
+                        <a href="{% url 'posts:home' %}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </article>
+    </div>
+</div>
+{% endblock %}

@@ -10,15 +10,15 @@
                 <p class="text-light">Help us build the best cream tea community. Share a venue you love!</p>
             </div>
             <div class="card-body">
-                <form method="post" enctype="multipart/form-data" action="{% url 'posts:post_add' %}">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    
-                    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
-                        <button type="submit" class="btn btn-primary">Submit Venue</button>
-                        <a href="{% url 'posts:home' %}" class="btn btn-secondary">Cancel</a>
-                    </div>
-                </form>
+                <h2>{% if edit_mode %}Edit Post{% else %}Add Post{% endif %}</h2>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        <button type="submit" class="btn btn-primary">
+                            {% if edit_mode %}Update Post{% else %}Upload Post{% endif %}
+                        </button>
+                    </form>
             </div>
         </article>
     </div>

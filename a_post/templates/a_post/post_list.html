@@ -6,7 +6,7 @@
         <h1>Welcome to Rate My Cream Tea</h1>
         <h5>Discover & Share Your Favorite Cream Tea Experiences</h5>
         <p>Explore delightful cream tea venues, read genuine reviews from our community, and share your own experiences. Find the perfect spot for your next cream tea adventure!</p>
-        <a href="#" class="btn btn-primary">Share Your Experience</a>
+        <a href="{% url 'posts:post_add' %}" class="btn btn-primary">Share Your Experience</a>
     </div>
 </section>
 
@@ -15,35 +15,41 @@
     <div class="row">
         {% if posts %}
             {% for post in posts %}
-            <div class="col-md-4">
-                <article class="card">
-                    {% if post.image %}
-                        <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
-                    {% else %}
-                        <img src="https://via.placeholder.com/800x400?text={{ post.title }}" class="card-img-top" alt="{{ post.title }}">
-                    {% endif %}
-                    <div class="card-header">
-                        <h3 class="card-title">{{ post.title }}</h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text"><strong>Location:</strong> {{ post.location }}</p>
-                        <p class="card-text"><strong>Category:</strong> <span class="badge">{{ post.category }}</span></p>
-                        <div class="post-meta">
-                            <div class="rating">
-                                <span class="rating-stars">★ {{ post.rating }}/5</span>
+            <div class="col-md-4 {% if post.is_approved %}d-block{% elif post.user == user %}d-block{% else %}d-none{% endif %}">
+                <a href="{% url 'posts:post_detail' post.id %}" style="text-decoration: none; color: inherit;">
+                    <article class="card" style=" {%if post.user == user and not post.is_approved %}border: 2px dashed #ff9800;{% endif %}">
+                        {%if post.user == user and not post.is_approved %}
+                            <div class="card-warning bg-warning">
+                                <h5 class="card-title">Pending Approval</h5>
                             </div>
-                            <div class="price">
-                                <strong>Price:</strong> £{{ post.price }}
+                        {% endif %}
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+                        {% else %}
+                            <img src="https://via.placeholder.com/800x400?text={{ post.title }}" class="card-img-top" alt="{{ post.title }}">
+                        {% endif %}
+                        <div class="card-header">
+                            <h3 class="card-title">{{ post.title }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><strong>Location:</strong> {{ post.location }}</p>
+                            <p class="card-text"><strong>Category:</strong> <span class="badge">{{ post.category }}</span></p>
+                            <div class="post-meta">
+                                <div class="rating">
+                                    <span class="rating-stars">★ {{ post.rating }}/5</span>
+                                </div>
+                                <div class="price">
+                                    <strong>Price:</strong> £{{ post.price }}
+                                </div>
                             </div>
                         </div>
-                        <a href="{% url 'posts:post_detail' post.id %}" class="btn btn-primary">View Details</a>
-                    </div>
-                </article>
+                    </article>
+                </a>
             </div>
             {% endfor %}
         {% else %}
             <div class="col-md-12 text-center">
-                <p class="text-muted">No cream tea venues yet. Be the first to <a href="{% url 'account_login' %}">share one!</a></p>
+                <p class="text-muted">No cream tea venues yet. Be the first to <a href="{% url 'posts:post_add' %}">share one!</a></p>
             </div>
         {% endif %}
     </div>

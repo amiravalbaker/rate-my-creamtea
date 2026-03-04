@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
 <div class="row">
 	<div class="col-lg-8 mx-auto">
 		<div class="row g-4">
@@ -23,18 +25,31 @@
 		<hr class="my-4">
 
 		<h3 class="h5 mb-3">Comments</h3>
+
+		<!-- Replace this with comment form (can copy logic from post_add) -->
 		<div class="mb-3">
 			<button type="button" class="btn btn-primary" disabled>Add Comment Button</button>
 		</div>
 
+		<!-- Replace this with dynamic comments:
+		  (if comments)
+		  	for comment in comment
+			display the comment -->
+			<!-- Example static comment card -->
 		<div class="card mb-3">
+			<div class="card-header bg-light">
+				<strong>user</strong> commented on {{ comment.created_at|date:"d M Y" }}
+			</div>
 			<div class="card-body">
-				<p class="mb-0">Lovely atmosphere and the scones were soft and fresh. I would definitely visit again.</p>
+				<h5 class="card-title">title</h5>
+				<p class="mb-0">description</p>
 			</div>
+			{% if comment.user == user or user.is_staff %}
 			<div class="card-footer bg-white border-top-0 d-flex justify-content-end">
-				<a href="#" class="me-2">edit</a>
-				<a href="#">delete</a>
+				<a href="{% url 'posts:comment_edit' comment.pk %}" class="me-2">edit</a>
+				<a href="{% url 'posts:comment_delete' comment.pk %}">delete</a>
 			</div>
+			{% endif %}
 		</div>
 
 		<div class="card mb-3">

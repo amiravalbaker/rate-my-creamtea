@@ -86,9 +86,23 @@ def post_delete(request, pk):
 
 
 @login_required
-def comment_edit(request, pk):
-    comment = get_object_or_404(Comment, pk=pk, user=request.user)
-    post_pk = comment.post.pk
+def comment_add(request, post_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.user = request.user
+            comment.save()
+            messages.info(request, "Comment submitted and awaiting approval.")
+    return redirect('posts:post_detail', pk=post_pk)
+
+
+@login_required
+def comment_edit(request, post_pk, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    postpk = post_pk
     if request.method == 'POST':
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
@@ -98,13 +112,12 @@ def comment_edit(request, pk):
             messages.success(
                 request, "Comment updated and sent for re-approval!")
 
-    return redirect('post_detail', pk=post_pk)
+    return redirect('posts:post_detail', pk=postpk)
 
 
 @login_required
-def comment_delete(request, pk):
-    comment = get_object_or_404(Comment, pk=pk, user=request.user)
-    post_pk = comment.post.pk
+def comment_delete(request, post_pk, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
     if request.method == 'POST':
         comment.delete()
         messages.success(request, "Comment successfully deleted.")

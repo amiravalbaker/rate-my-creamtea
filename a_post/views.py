@@ -120,4 +120,4 @@ def comment_delete(request, post_pk, comment_pk):
     if request.method == 'POST':
         comment.delete()
         messages.success(request, "Comment successfully deleted.")
-    return redirect('post_detail', pk=post_pk)
+    return redirect('posts:post_detail', pk=post_pk)

@@ -17,6 +17,12 @@
 					<strong>by</strong> {{ post.user }}<br>
 					<strong>date</strong> {{ post.created_at|date:"d M Y" }}
 				</p>
+				{% if post.user == user %}
+				<div class="card-footer border-top-0 d-flex justify-content-end">
+					<a href="{% url 'posts:post_edit' post.pk%}" class="me-2">edit</a>
+					<a href="{% url 'posts:post_delete' post.pk %}">delete</a>
+				</div>
+			{% endif %}
 			</div>
 		</div>
 

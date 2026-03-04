@@ -6,9 +6,12 @@ from .forms import PostForm, CommentForm
 
 # Create your views here.
 
+# give all posts so user unlogged in can see all posts, but only approved ones
+# logged in can see their own unapproved posts and all approved posts
+
 
 def home(request):
-    posts = Post.objects.filter(is_approved=True)
+    posts = Post.objects.all().order_by('-created_at')
     return render(request, 'a_post/post_list.html', {'posts': posts})
 
 
@@ -21,7 +24,7 @@ def post_add(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-            return redirect('home')
+            return redirect('posts:home')
     else:
         form = PostForm()
 
@@ -29,9 +32,10 @@ def post_add(request):
 
 
 def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk, is_approved=True)
+    # removed the filter for approved posts so that users can see their own unapproved posts
+    post = get_object_or_404(Post, pk=pk)
     comments = post.comments.filter(is_approved=True)
-    
+
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -50,6 +54,7 @@ def post_detail(request, pk):
         'form': form,
     })
 
+
 @login_required
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk, user=request.user)
@@ -64,10 +69,11 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'a_post/post_add.html', {
-        'form': form, 
+        'form': form,
         'post': post,
         'edit_mode': True,  # Flag to indicate we're in edit mode
-        })
+    })
+
 
 @login_required
 def post_delete(request, pk):
@@ -78,6 +84,7 @@ def post_delete(request, pk):
         return redirect('home')
     return redirect('post_detail', pk=pk)
 
+
 @login_required
 def comment_edit(request, pk):
     comment = get_object_or_404(Comment, pk=pk, user=request.user)
@@ -86,11 +93,13 @@ def comment_edit(request, pk):
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.is_approved = False # Require re-approval
+            comment.is_approved = False  # Require re-approval
             comment.save()
-            messages.success(request, "Comment updated and sent for re-approval!")
-        
+            messages.success(
+                request, "Comment updated and sent for re-approval!")
+
     return redirect('post_detail', pk=post_pk)
+
 
 @login_required
 def comment_delete(request, pk):

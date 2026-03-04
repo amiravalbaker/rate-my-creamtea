@@ -1,7 +1,7 @@
 :root {
     /* Color Palette - Bold Minimalist Monochromatic (WCAG AAA Compliant) */
     --primary-color: #754e4e;
-    --primary-light: #4a585a;
+    --primary-light: #3b4244;
     --primary-dark: #000000;
     --accent-color: #1976d2;
     --accent-light: #ffffff;
@@ -266,6 +266,16 @@ a:focus {
     padding: var(--spacing-lg);
     border-bottom: 3px solid var(--accent-color);
 }
+.card-warning {
+    background: linear-gradient(
+        135deg,
+        var(--warning-color) 0%,
+        var(--danger-color) 100%
+    );
+    color: var(--text-light);
+    padding: var(--spacing-lg);
+    border-bottom: 3px solid var(--accent-color);
+}
 
 .card-header h2 {
     color: var(--text-light);
@@ -285,7 +295,7 @@ a:focus {
 }
 
 .card-title {
-    color: var(--primary-dark);
+    color: var(--text-light);
     font-size: 1.35rem;
     margin-bottom: var(--spacing-md);
     font-weight: 600;

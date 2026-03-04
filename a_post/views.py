@@ -84,40 +84,52 @@ def post_delete(request, pk):
         return redirect('posts:home')
     return redirect('posts:post_detail', pk=pk)
 
-    # @login_required
-    # def comment_add(request, post_pk):
-    #     post = get_object_or_404(Post, pk=post_pk)
-    #     if request.method == 'POST':
-    #         form = CommentForm(request.POST)
-    #         if form.is_valid():
-    #             comment = form.save(commit=False)
-    #             comment.post = post
-    #             comment.user = request.user
-    #             comment.save()
-    #             messages.info(request, "Comment submitted and awaiting approval.")
-    #     return render(request, 'a_post/post_detail.html', form=form)
-
 
 @login_required
 def comment_edit(request, post_pk, comment_pk):
+    """Allows a user to edit their own comment"""
+    post = get_object_or_404(Post, pk=post_pk)
     comment = get_object_or_404(Comment, pk=comment_pk)
-    postpk = post_pk
+
+    # Only the comment author or staff can edit
+    if request.user != comment.user and not request.user.is_staff:
+        messages.error(request, "You can only edit your own comments.")
+        return redirect('posts:post_detail', pk=post_pk)
+
     if request.method == 'POST':
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
-            comment = form.save(commit=False)
-            comment.is_approved = False  # Require re-approval
-            comment.save()
-            messages.success(
-                request, "Comment updated and sent for re-approval!")
+            form.save()
+            messages.success(request, "Comment updated successfully.")
+            return redirect('posts:post_detail', pk=post_pk)
+    else:
+        form = CommentForm(instance=comment)
 
-    return redirect('posts:post_detail', pk=postpk)
+    return render(request, 'a_post/comment_form.html', {
+        'form': form,
+        'post': post,
+        'comment': comment,
+        'edit_mode': True
+    })
 
 
 @login_required
 def comment_delete(request, post_pk, comment_pk):
+    """Allows a user to delete their own comment"""
+    post = get_object_or_404(Post, pk=post_pk)
     comment = get_object_or_404(Comment, pk=comment_pk)
+
+    # Only the comment author or staff can delete
+    if request.user != comment.user and not request.user.is_staff:
+        messages.error(request, "You can only delete your own comments.")
+        return redirect('posts:post_detail', pk=post_pk)
+
     if request.method == 'POST':
         comment.delete()
-        messages.success(request, "Comment successfully deleted.")
-    return redirect('posts:post_detail', pk=post_pk)
+        messages.success(request, "Comment deleted successfully.")
+        return redirect('posts:post_detail', pk=post_pk)
+
+    return render(request, 'a_post/comment_confirm_delete.html', {
+        'post': post,
+        'comment': comment
+    })

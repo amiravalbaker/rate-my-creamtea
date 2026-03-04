@@ -1,1 +1,53 @@
 {% extends "base.html" %}
+{% block content %}
+<div class="row">
+	<div class="col-lg-8 mx-auto">
+		<div class="row g-4">
+			<div class="col-md-5">
+				<img src="https://via.placeholder.com/400x300" class="img-fluid rounded" alt="Cream tea post image">
+			</div>
+			<div class="col-md-7">
+				<h2 class="h4 mb-3">Classic Cream Tea at Devon Garden Room</h2>
+				<p class="mb-4">
+					Warm homemade scones served with clotted cream and strawberry preserve.
+					The tea was fresh, service was friendly, and the setting felt calm and cozy.
+					Great stop for an afternoon cream tea.
+				</p>
+				<p class="text-end mb-0">
+					<strong>by</strong> Anonymous<br>
+					<strong>date</strong> 03 Mar 2026
+				</p>
+			</div>
+		</div>
+
+		<hr class="my-4">
+
+		<h3 class="h5 mb-3">Comments</h3>
+		<div class="mb-3">
+			<button type="button" class="btn btn-primary" disabled>Add Comment Button</button>
+		</div>
+
+		<div class="card mb-3">
+			<div class="card-body">
+				<p class="mb-0">Lovely atmosphere and the scones were soft and fresh. I would definitely visit again.</p>
+			</div>
+			<div class="card-footer bg-white border-top-0 d-flex justify-content-end">
+				<a href="#" class="me-2">edit</a>
+				<a href="#">delete</a>
+			</div>
+		</div>
+
+		<div class="card mb-3">
+			<div class="card-body">
+				<p class="mb-0">Tea quality was excellent and portions were generous. Nice place to relax.</p>
+			</div>
+		</div>
+
+		<div class="card mb-3">
+			<div class="card-body">
+				<p class="mb-0">Good value and very friendly staff. Jam and cream balance was perfect.</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

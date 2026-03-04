@@ -19,10 +19,10 @@ class Post(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     location = models.CharField(max_length=255)
     image = CloudinaryField('image')  # Cloudinary image storage
-    
+
     rating = models.IntegerField(
         default=5,
-        choices=RATING_CHOICES, # Add this
+        choices=RATING_CHOICES,  # Add this
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     is_approved = models.BooleanField(
@@ -48,7 +48,7 @@ class Comment(models.Model):
     description = models.TextField()
     rating = models.IntegerField(
         default=5,
-        choices=RATING_CHOICES, # Add this
+        choices=RATING_CHOICES,  # Add this
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     is_approved = models.BooleanField(

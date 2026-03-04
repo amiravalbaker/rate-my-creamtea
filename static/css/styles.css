@@ -44,7 +44,7 @@ body {
     color: var(--text-dark);
     background-color: #ba5f95db;
     line-height: 1.6;
-    font-weight: 400;rgba(229, 136, 169, 0.259)rgba(207, 117, 149, 0.259)rgba(207, 117, 149, 0.823)
+    font-weight: 400;
 }
 
 /* Skip to main content link for accessibility */

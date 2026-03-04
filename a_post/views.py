@@ -34,7 +34,7 @@ def post_add(request):
 def post_detail(request, pk):
     # removed the filter for approved posts so that users can see their own unapproved posts
     post = get_object_or_404(Post, pk=pk)
-    comments = post.comments.filter(is_approved=True)
+    comments = post.comments.all().order_by('-created_at')
 
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -44,7 +44,7 @@ def post_detail(request, pk):
             comment.user = request.user
             comment.save()
             messages.info(request, "Comment submitted and awaiting approval.")
-            return redirect('post_detail', pk=post.pk)
+            return redirect('posts:post_detail', pk=post.pk)
     else:
         form = CommentForm()
 
@@ -84,19 +84,18 @@ def post_delete(request, pk):
         return redirect('posts:home')
     return redirect('posts:post_detail', pk=pk)
 
-
-@login_required
-def comment_add(request, post_pk):
-    post = get_object_or_404(Post, pk=post_pk)
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.user = request.user
-            comment.save()
-            messages.info(request, "Comment submitted and awaiting approval.")
-    return redirect('posts:post_detail', pk=post_pk)
+    # @login_required
+    # def comment_add(request, post_pk):
+    #     post = get_object_or_404(Post, pk=post_pk)
+    #     if request.method == 'POST':
+    #         form = CommentForm(request.POST)
+    #         if form.is_valid():
+    #             comment = form.save(commit=False)
+    #             comment.post = post
+    #             comment.user = request.user
+    #             comment.save()
+    #             messages.info(request, "Comment submitted and awaiting approval.")
+    #     return render(request, 'a_post/post_detail.html', form=form)
 
 
 @login_required

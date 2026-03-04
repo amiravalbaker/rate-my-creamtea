@@ -14,7 +14,7 @@
 					{{post.description}}
 				</p>
 				<p class="text-end mb-0">
-					<strong>by</strong> {{ post.author }}<br>
+					<strong>by</strong> {{ post.user }}<br>
 					<strong>date</strong> {{ post.created_at|date:"d M Y" }}
 				</p>
 			</div>
@@ -24,25 +24,16 @@
 
 		<h3 class="h5 mb-3">Comments</h3>
 
-		<div class="mb-4">
-			<h4 class="h6 mb-3">Add a Comment</h4>
-			<form method="post" action="{% url 'posts:comment_add' post.pk %}">
-				{% csrf_token %}
-				{{ CommentForm|crispy }}
-				<button type="submit" class="btn btn-primary">Post Comment</button>
-			</form>
-		</div>
+		
 
-		<!-- Replace this with dynamic comments:
-		  (if comments)
-		  	for comment in comment
-			display the comment -->
-			<!-- Example static comment card-->
+
 		{%if comments%}
 		{% for comment in comments %}
+		{% if comment.is_approved or comment.user == user or user.is_staff %}
 		<div class="card mb-3">
 			<div class="card-header bg-light">
 				<strong>{{ comment.user }}</strong> commented on {{ comment.created_at|date:"d M Y" }}
+				{% if not comment.is_approved %}<span class="badge bg-warning text-dark ms-2">Pending Approval</span>{% endif %}
 			</div>
 			<div class="card-body">
 				<h5 class="card-title">{{ comment.title }}</h5>
@@ -55,8 +46,18 @@
 			</div>
 			{% endif %}
 		</div>
+		{% endif %}
 		{% endfor %}
 		{% endif %}
+		<div class="mb-4">
+			<h4 class="h6 mb-3">Add a Comment</h4>
+			<form method="post">
+				{% csrf_token %}
+				{{ form|crispy}}
+
+				<button type="submit" class="btn btn-primary">Post Comment</button>
+			</form>
+		</div>
 	</div>
 </div>
 {% endblock %}

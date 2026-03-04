@@ -65,7 +65,7 @@ def post_edit(request, pk):
             post.is_approved = False  # Re-verify after edit
             post.save()
             messages.success(request, "Post updated and sent for re-approval!")
-            return redirect('post_detail', pk=post.pk)
+            return redirect('posts:post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
     return render(request, 'a_post/post_add.html', {
@@ -81,8 +81,8 @@ def post_delete(request, pk):
     if request.method == 'POST':
         post.delete()
         messages.success(request, "Post successfully deleted.")
-        return redirect('home')
-    return redirect('post_detail', pk=pk)
+        return redirect('posts:home')
+    return redirect('posts:post_detail', pk=pk)
 
 
 @login_required

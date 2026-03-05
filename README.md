@@ -4,9 +4,18 @@ A user-friendly community site for people of all ages to document and share thei
 
 ## Deployment
 
-## User stories
+Deployed link:
+This project is hosted on heroku, with cloudinary image hosting, postgreSQL db and gunicon runtime engine.
 
-### Must Have
+To configure this project for local use you will need to add the following to an env file:
+
+- Database URL
+- Cloudinary URL
+- App Secret key
+
+Python dependencies are listed in requirement.txt
+
+## User stories
 
 - **#1 Upload image** - As a logged-in user, I can upload an image with my cream tea post so that others can see what it looked like.
 - **#2 Browse posts** - As a site user, I can browse posts and comments so that I can view content.
@@ -18,9 +27,27 @@ A user-friendly community site for people of all ages to document and share thei
 - **#8 Add posts** - As a logged in user, I can add posts that I can share my cream tea experience with others.
 - **#9 Comment on posts** - As a logged in user, I can comment on posts so that I can review cream teas.
 
+## Features
+
+From these user stories we derived features:
+
+- List view for posts.
+- Add a new post with image and rating for logged in users.
+- Edit post.
+- Add/Edit/Delete comments.
+- Admin panel for site staff moderation control.
+
 ## UX Design
 
-## Features
+Our primary focus in implementing these features for our user group was simple and navigable design.
+
+(Wireframe)
+
+## Testing
+
+HTML Validation with W3C validator
+Accessibility testing with WaveAIM
+Automated testing was beyond the scope of this project.
 
 ## Technologies
 

@@ -34,9 +34,12 @@ def post_add(request):
 def post_detail(request, pk):
     # removed the filter for approved posts so that users can see their own unapproved posts
     post = get_object_or_404(Post, pk=pk)
-    comments = post.comments.all().order_by('-created_at')
+    comments = post.comments.all().order_by('-created_at').filter(is_approved=True)  # Only show approved comments
 
     if request.method == 'POST':
+        if not request.user.is_authenticated:
+            messages.error(request, "You must be logged in to post a comment.")
+            return redirect('login') # or wherever your login URL is
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)

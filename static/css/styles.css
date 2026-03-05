@@ -615,3 +615,86 @@ label {
 .mb-4 {
     margin-bottom: var(--spacing-xl) !important;
 }
+/* ============================================
+   Login Page Styles
+   ============================================ */
+
+.login-form {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-label {
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-sm);
+    display: block;
+}
+
+.login-input {
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.login-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+    outline: none;
+}
+
+.login-input::placeholder {
+    color: #999999;
+}
+
+.login-error {
+    background-color: #ffebee;
+    border-left: 4px solid #ce313c;
+    color: #c62828;
+    padding: var(--spacing-md);
+    border-radius: 4px;
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.95rem;
+}
+
+.login-error p {
+    margin: 0;
+}
+
+.login-footer {
+    text-align: center;
+    border-top: 1px solid var(--border-light);
+    padding-top: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.login-footer-text {
+    margin: var(--spacing-sm) 0;
+    font-size: 0.95rem;
+    color: #666666;
+}
+
+.login-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+.login-link-secondary {
+    color: #999999;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.login-link-secondary:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}

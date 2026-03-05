@@ -1,4 +1,4 @@
-# rate-my-creamtea
+# Rate My Creamtea
 
 A user-friendly community site for people of all ages to document and share their experiences of cream tea.
 
@@ -14,6 +14,13 @@ To configure this project for local use you will need to add the following to an
 - App Secret key
 
 Python dependencies are listed in requirement.txt
+
+## Technologies
+
+HTML, CSS5, Bootstrap 5.3.
+Django, allauth, gunicorn, summernote, whitenoise.
+Cloudinary for image hosting
+Heroku for deployment.
 
 ## User stories
 
@@ -41,20 +48,22 @@ From these user stories we derived features:
 
 Our primary focus in implementing these features for our user group was simple and navigable design.
 
-(Wireframe)
+<img width="779" height="1122" alt="image" src="https://github.com/user-attachments/assets/3b024796-e1f2-4fd8-b5f9-446703b33dde" />
 
+From our wireframe, we were able to implement a simple, clean and responsive design.
+<img width="1693" height="900" alt="image" src="https://github.com/user-attachments/assets/745d9fa8-ad34-42e3-8308-d64f11341405" />
+
+With a bright colourscheme, we hoped to invoke the feeling of cream teas, and helped ensure that all areas meet WCAG colour contrast ratios.
 ## Testing
 
 HTML Validation with W3C validator
 Accessibility testing with WaveAIM
 Automated testing was beyond the scope of this project.
 
-## Technologies
+## Agile development approach
 
-HTML, CSS5, Bootstrap 5.3.
-Django, allauth, gunicorn, summernote, whitenoise.
-Cloudinary for image hosting
-Heroku for deployment.
+Due to the short development timeframe, we elected to conduct each project day as a sprint with daily scrum to assign tasks and ensure a common understanding of task priority.
+
 
 ## AI usage
 

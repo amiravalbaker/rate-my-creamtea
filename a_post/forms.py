@@ -15,7 +15,7 @@ class PostForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['title', 'description', 'rating', 'is_approved']
+        fields = ['description', 'rating']
         widgets = {
             'rating': forms.RadioSelect(attrs={'class': 'star-rating-input'}),
         }

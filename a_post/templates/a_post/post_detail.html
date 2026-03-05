@@ -10,9 +10,14 @@
 			</div>
 			<div class="col-md-7">
 				<h2 class="h4 mb-3">{{ post.title }}</h2>
+				<h3 class="h6 mb-3 text-muted">{{ post.category }}</h3>
 				<p class="mb-4">
 					{{post.description}}
 				</p>
+				<p cl....ass="mb-4">
+					This cost £{{ post.price }} in {{ post.location }} and has a rating of {{ post.rating }}/5.
+				</p>
+
 				<p class="text-end mb-0">
 					<strong>by</strong> {{ post.user }}<br>
 					<strong>date</strong> {{ post.created_at|date:"d M Y" }}
@@ -47,8 +52,8 @@
 				{% if not comment.is_approved %}<span class="badge bg-warning text-dark ms-2">Pending Approval</span>{% endif %}
 			</div>
 			<div class="card-body">
-				<h5 class="card-title">{{ comment.title }}</h5>
 				<p class="mb-0">{{ comment.description }}</p>
+				<p class="mb-0">{{ comment.rating }}/5 Stars</p>
 			</div>
 			{% if comment.user == user or user.is_staff %}
 			<div class="card-footer bg-white border-top-0 d-flex justify-content-end">
@@ -61,7 +66,8 @@
 		{% endfor %}
 		{% endif %}
 		<div class="mb-4">
-			<h4 class="h6 mb-3">Add a Comment</h4>
+			<h4 class="h6 mb-3"></h4>Tell us what you think of the cream tea in the description box below<br>
+		And give it a rating from 1 to 5:</h4>
 			<form method="post">
 				{% csrf_token %}
 				{{ form|crispy}}

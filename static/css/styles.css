@@ -1,21 +1,21 @@
 :root {
-    /* Color Palette - Bold Minimalist Monochromatic (WCAG AAA Compliant) */
-    --primary-color: #754e4e;
-    --primary-light: #3b4244;
+    /* Color Palette - Black, Red, Cream, White */
+    --primary-color: #DC143C;
+    --primary-light: #FF6B6B;
     --primary-dark: #000000;
-    --accent-color: #1976d2;
+    --accent-color: #FFF8DC;
     --accent-light: #ffffff;
-    --success-color: #1b5e20;
-    --warning-color: #e65100;
-    --danger-color: #b71c1c;
-    --info-color: #0d47a1;
+    --success-color: #000000;
+    --warning-color: #DC143C;
+    --danger-color: #8B0000;
+    --info-color: #000000;
 
     --text-dark: #000000;
     --text-light: #ffffff;
-    --text-muted: #424242;
-    --border-light: #e0e0e0;
-    --bg-light: #e5b688;
-    --bg-lighter: #f9f5e9;
+    --text-muted: #333333;
+    --border-light: #E8D5C4;
+    --bg-light: #FFF8DC;
+    --bg-lighter: #FFFDF9;
 
     /* Spacing */
     --spacing-xs: 0.25rem;
@@ -42,9 +42,9 @@ html {
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-dark);
-    background-color: #ba5f95db;
+    background-color: var(--bg-lighter);
     line-height: 1.6;
-    font-weight: 400;rgba(229, 136, 169, 0.259)rgba(207, 117, 149, 0.259)rgba(207, 117, 149, 0.823)
+    font-weight: 400;
 }
 
 /* Skip to main content link for accessibility */
@@ -201,8 +201,22 @@ a:focus {
    Jumbotron / Hero Section
    ============================================ */
 
+.hero-image {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+    padding: var(--spacing-xxl) var(--spacing-xl);
+    text-align: center;
+    border-bottom: 4px solid var(--accent-color);
+}
+
+.hero-logo {
+    max-width: 300px;
+    height: auto;
+    width: 100%;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
 .jumbotron {
-    background: linear-gradient(135deg, #df7878 0%, #0d47a1 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     color: var(--text-light);
     padding: var(--spacing-xxl) var(--spacing-xl);
     border-radius: 8px;
@@ -357,7 +371,7 @@ a:focus {
     background-color: var(--accent-light);
     border-color: var(--accent-light);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 248, 220, 0.5);
 }
 
 /* Success Button */
@@ -368,8 +382,8 @@ a:focus {
 }
 
 .btn-success:hover {
-    background-color: #0d3818;
-    border-color: #0d3818;
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
 }
 
 /* Danger Button */
@@ -380,8 +394,8 @@ a:focus {
 }
 
 .btn-danger:hover {
-    background-color: #7d1313;
-    border-color: #7d1313;
+    background-color: #6A0000;
+    border-color: #6A0000;
 }
 
 /* Info Button */
@@ -392,8 +406,8 @@ a:focus {
 }
 
 .btn-info:hover {
-    background-color: #0634c4;
-    border-color: #0634c4;
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
 }
 
 /* ============================================
@@ -560,13 +574,14 @@ select {
     transition:
         border-color 0.3s ease,
         box-shadow 0.3s ease;
+    width: 100%;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.15);
     outline: none;
 }
 

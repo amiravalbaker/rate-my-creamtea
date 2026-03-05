@@ -158,8 +158,20 @@ if os.environ.get('CLOUDINARY_URL'):
     cloudinary.config(secure=True)
 
 STORAGE_URL = os.environ.get('CLOUDINARY_URL')
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# Use Cloudinary storage only in production (not locally on Windows)
+if os.environ.get('CLOUDINARY_URL') and not DEBUG:
+    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+else:
+    # Use default local storage in development
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+# Cloudinary Storage settings to handle Windows paths
+CLOUDINARY_STORAGE = {
+    'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL'),
+}
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 LOGIN_REDIRECT_URL = '/'

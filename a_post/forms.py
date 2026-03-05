@@ -5,7 +5,8 @@ from .models import Post, Comment
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'description', 'category', 'price', 'location', 'image', 'rating']
+        fields = ['title', 'description', 'category',
+                  'price', 'location', 'image', 'rating']
         widgets = {
             'rating': forms.RadioSelect(attrs={'class': 'star-rating-input'}),
         }
@@ -14,7 +15,7 @@ class PostForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['title', 'description', 'rating']
+        fields = ['description', 'rating']
         widgets = {
             'rating': forms.RadioSelect(attrs={'class': 'star-rating-input'}),
         }

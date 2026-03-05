@@ -1,12 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+
 <section class="jumbotron">
     <div class="text-center">
         <h1>Welcome to Rate My Cream Tea</h1>
+        <img src="{% static 'images/logo.svg' %}" alt="Rate My Cream Tea Logo" class="hero-logo">
         <h5>Discover & Share Your Favorite Cream Tea Experiences</h5>
         <p>Explore delightful cream tea venues, read genuine reviews from our community, and share your own experiences. Find the perfect spot for your next cream tea adventure!</p>
-        <a href="{% url 'posts:post_add' %}" class="btn btn-primary">Share Your Experience</a>
+        <a href="{% url 'posts:post_add' %}" class="btn btn-light">Leave Your Cream Tea Review</a>
     </div>
 </section>
 

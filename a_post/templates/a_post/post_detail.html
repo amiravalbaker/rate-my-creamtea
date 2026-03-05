@@ -67,13 +67,18 @@
 		{% endif %}
 		<div class="mb-4">
 			<h4 class="h6 mb-3"></h4>Tell us what you think of the cream tea in the description box below<br>
-		And give it a rating from 1 to 5:</h4>
-			<form method="post">
-				{% csrf_token %}
-				{{ form|crispy}}
-
-				<button type="submit" class="btn btn-primary">Post Comment</button>
-			</form>
+			And give it a rating from 1 to 5:</h4>
+			{% if user.is_authenticated %}
+				<form method="post">
+					{% csrf_token %}
+					{{ form|crispy}}
+					<button type="submit" class="btn btn-primary">Post Comment</button>
+				</form>
+			{% else %}
+        		<div class="alert alert-info">
+            		<p class="mb-0">Please <a href="{% url 'account_login' %}">log in</a> to share your rating and review of this venue.</p>
+        		</div>
+    		{% endif %}
 		</div>
 	</div>
 </div>
